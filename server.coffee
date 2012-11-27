@@ -2,7 +2,7 @@
 express = require "express"
 http = require "http"
 winston = require "winston"
-socket_io = require "socket.io"
+#socket_io = require "socket.io"
 lingua = require "lingua"
 mongodb = require "connect-mongodb"
 
