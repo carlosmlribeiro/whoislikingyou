@@ -1,4 +1,4 @@
-<img src="http://whoislikingyou.herolu/images/logo_440x90.png" alt="whoislikingyou">
+<img src="http://whoislikingyou.heroku.com/images/logo_440x90.png" alt="whoislikingyou">
 ==============
 
 Social CRM tool
