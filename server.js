@@ -29,7 +29,7 @@ app.set('view engine', 'toffee');
 
 app.set('db', "mongodb://admin:whoislikingyou@alex.mongohq.com:10072/whoislikingyou");
 
-app.set('port', process.env.npm_package_config_port);
+app.set('port', process.env.npm_package_config_port || 80);
 
 app.locals.layout = './user-interface/views/layout.toffee';
 
