@@ -1,0 +1,4 @@
+<html>
+#{print body}
+<p> &copy; #{lingua.layout.copy} </p>
+</html>

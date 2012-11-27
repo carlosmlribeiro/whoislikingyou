@@ -1,0 +1,214 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/carlosmlribeiro/whoislikingyou/package.json",
+			"settings":
+			{
+				"buffer_size": 394,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "# Server setup (creating, configuring and starting the server, using a specific port to listen)\n\n\n# Step 1 - Require external modules\nexpress = require('express')\nhttp = require('http')\nwinston = require('winston')\nsocket_io = require('socket.io')\nlingua = require('lingua')\nMemoryStore = express.session.MemoryStore\n\nmyMiddleware = require(\"./services/supportservices/middleware\")\nmyErrorHandler= require(\"./services/supportservices/errorHandler\")\n\nmyRoutes = \"./presentation/routes\"\nmySocketRoutes = \"./presentation/socketroutes\"\n\nwinston.add(winston.transports.File, { filename: 'generic.log' });\nwinston.remove(winston.transports.Console)\nexports.winston = winston\n\n# Step 2 - Server Configuration\napp = module.exports = express()\n	\napp.set 'views', \"./presentation/views\" #Definition to the path of the view folder\napp.set 'view engine', 'toffee'\napp.set 'db', \"mongodb://192.168.1.21:27016/NewDawn\"\napp.set 'port', process.env.npm_package_config_port\n#todo-create collection in MongoDB\napp.set 'onlineUsers', {}\napp.locals.layout = './presentation/views/layout.toffee'\n\nif app.get(\"env\") is \"development\"\n	app.use express.logger('dev')\n\napp.use express.favicon('./presentation/public/favicon.ico')\napp.use myMiddleware.type('multipart/form-data', express.limit('2mb')) # only accepted before bodyParser\n\napp.use lingua app, {defaultLocale: 'en', path: './presentation/views/locales'}\n\napp.use express.bodyParser({keepExtensions: true, uploadDir: \"./presentation/public/uploads\"})\n\n#session support\nsession_store = new MemoryStore()\napp.use express.cookieParser('optional secret string') \napp.use express.session({key: 'sid', cookie: {maxAge: 3600000}, store: session_store}) #use before app.router\n\napp.use express.compress({level:9, memLevel:9}) # only accepted before static and router\napp.use express.static('./presentation/public')\napp.use myMiddleware.status\napp.use myMiddleware.config\n\napp.use app.router\n\nif app.get(\"env\") is \"development\"\n	app.use express.errorHandler({dumpExceptions:false, showStack:false})\n	app.disable('view cache')\nelse\n	#production error handling\n	app.use myErrorHandler.logErrors\n	app.use myErrorHandler.clientErrorHandler\n	app.use myErrorHandler.errorHandler\n\nwinston.log('info', 'Requiring Routes')\nrequire(myRoutes)(app, myMiddleware, session_store) \n\nwinston.log('info', 'Creating http server')\n# Step x - Create and listen server\nserver = http.createServer(app)\n\nwinston.log('info', 'Creating socket server')\nio = socket_io.listen(server)\n\nwinston.log('info', 'Configuring socket server')\nio.set(\"log level\", 0)\nrequire(mySocketRoutes)(app, myMiddleware, io, session_store) \n\nwinston.log('info', 'Ready')\nserver.listen app.get('port'), ->\n	console.log \"Express server listening on port \" + server.address().port + \", in \" +  app.get(\"env\")\n",
+			"file": "/Users/carlosmlribeiro/Documents/source/server.coffee",
+			"file_size": 2864,
+			"file_write_time": 1352894399000000,
+			"settings":
+			{
+				"buffer_size": 2784,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 244.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/carlosmlribeiro/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/carlosmlribeiro/Documents/source/package.json",
+		"/Users/carlosmlribeiro/Documents/source/classes/MailIMAP.coffee"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/carlosmlribeiro/whoislikingyou/package.json",
+					"settings":
+					{
+						"buffer_size": 394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								335,
+								335
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/carlosmlribeiro/Documents/source/server.coffee",
+					"settings":
+					{
+						"buffer_size": 2784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								484,
+								484
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 471.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
