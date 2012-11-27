@@ -22,7 +22,7 @@ app = module.exports = express()
 app.set 'views', "./user-interface/views"
 app.set 'view engine', 'toffee'
 app.set 'db', "mongodb://admin:whoislikingyou@alex.mongohq.com:10072/whoislikingyou"
-app.set 'port', process.env.npm_package_config_port || 80
+app.set 'port', process.env.npm_package_config_port || 5000
 
 app.locals.layout = './user-interface/views/layout.toffee'
 
