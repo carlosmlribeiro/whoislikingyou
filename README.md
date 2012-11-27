@@ -1,7 +1,7 @@
 <img src="http://whoislikingyou.heroku.com/images/logo_440x90.png" alt="whoislikingyou">
 ==============
 
-Social CRM tool
+<b>Social CRM tool</b>
 
 Copyright (C) 2012 whoislikingyou.com
 
