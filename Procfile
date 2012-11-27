@@ -1,1 +1,1 @@
-server: npm start -prod
+server: node server
