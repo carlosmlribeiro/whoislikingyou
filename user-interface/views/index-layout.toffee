@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>#{title}</title>
+	<meta charset="utf-8">
+	#{partial "index-layout/css.toffee"}	
+	<meta name="description" content="">
+	<!-- google-verification -->
+	<meta name="viewport" content="width=1000">
+	<link rel="apple-touch-icon" href="images/favicon-ios.png">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link type="text/plain" rel="author" href="Carlos Ribeiro - Coimbra, Portugal">
+	<body>
+		#{print body}
+	</body>
+</html>

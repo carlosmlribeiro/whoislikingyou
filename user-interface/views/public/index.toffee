@@ -1,1 +1,36 @@
-<img src="/images/logo_440x90.png">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_PT/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="container">
+	<nav>
+		<ul>
+			<li>Follow us on Twitter<br /><a href="http://twitter.com/whoislikingyou">@whoislikingyou</a></li>
+			<li>send us an e-mail<br /><a href="mailto:hello@whoislikingyou.com">hello@whoislikingyou.com</a><li>
+			<li>...or call!<br /><a href="">(+351) 91 xxx xx xx</a></li>
+		</ul>
+		<a href="http://whoislikingyou.heroku.com/" class="logo">Who Is Liking You</a>
+	</nav>
+
+	<div class="main-content">
+		<header>
+			<h1>Do you know who like you on social networks?</h1>
+			<h2>We provide the tool you need to transform likes into customers</h2>
+		</header>
+		
+		<div class="recommend">
+			<h3><i>Early bird get's the worm</i></h3>
+			<h4>Subscribe now our page in Facebook and <i><strong>Who Is Liking You?</strong></i> will be free forever!</h4>
+			<br /><br />
+			<div class="fb-subscribe" data-href="https://www.facebook.com/whoislikingyou" data-show-faces="true" data-font="arial" data-width="250"></div>
+		</div>
+	</div>
+
+	<footer>
+		<p>Copyright ©2012 WhoIsLikingYou. All rights reserved.</p>
+	</footer>
+</div>
