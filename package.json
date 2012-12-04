@@ -17,7 +17,7 @@
     "moment":"1.7.2",
     "winston":"0.6.2",
     "connect-mongodb":"1.1.5",
-    "everyauth":"0.2.34",
+    "everyauth": "git://github.com/bnoguchi/everyauth.git#express3",
     "restify":"1.4.4",
     "winston-mongodb":"0.4.0"
   },
