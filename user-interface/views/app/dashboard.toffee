@@ -1,0 +1,22 @@
+<nav class="main" role="navigation">
+	<ul>
+		<li><img src="https://graph.facebook.com/#{user.username}/picture"></li>
+		<li><img src="https://graph.facebook.com/#{user.username}/picture"></li>
+		<li><img src="https://graph.facebook.com/#{user.username}/picture"></li>
+	</ul>
+</nav>
+<div class="content">
+	<div class="page">
+		<header>
+			<h1>Facebook pages</h1>
+			<nav class="actions">Refresh</nav>
+		</header>
+		<div class="sidebar auto-height db-list" style="min-height: 160.48333740234375px;">
+			<nav role="navigation">
+				<ul>
+					<li><a href="/carlosmlribeiro-gmail-com/mongo/whoislikingyou/collections"><span class="db-name">whoislikingyou</span><span class="db-plan">sandbox</span></a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>

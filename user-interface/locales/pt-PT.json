@@ -1,0 +1,31 @@
+{
+	"language":"pt-PT",
+	"appName":"Who Is Liking You?",
+	"public":
+	{
+		"title":"Who is Liking You? - Manage your customers and social buzz",
+		"section1":
+		{
+			"screenshots":"ecrãs",
+			"register":"Registo grátis",
+			"contactus":"Contacto",
+			"splash1":"Já tem uma página do seu negócio no Facebook?",
+			"splash2":"Este é o próximo passo para conhecer os seus clientes!",
+			"registerBtn":"(pre) Registo Já"
+		},
+		"section3":
+		{
+			"splash1":"Promoção Pioneiros",
+			"splash2":"Registe-se já e Who is Liking You vai ser grátis para sempre!",
+			"header1":"Registo com Facebook",
+			"header2":"Tudo o que precisa é a conta Facebook que adminstra a página do seu negócio - BREVEMENTE",
+			"facebookBtn":"Identificar com facebook"			
+		},
+		"section5":
+		{
+			"splash1":"Assine a nossa mailing list",
+			"splash2":"e fique a par das novidades",
+			"email":"insira o email"
+		}
+	}
+}

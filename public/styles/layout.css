@@ -1,0 +1,119 @@
+body header {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: 
+  rgba(0, 0, 0, 0);
+  background-image: none;
+  background-origin: padding-box;
+  bottom: 0px;
+  box-sizing: border-box;
+  color: 
+  rgb(66, 66, 66);
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans;
+  font-size: 16px;
+  height: 53px;
+  left: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  overflow-y: visible;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  position: relative;
+  right: 0px;
+  text-shadow: 
+  rgb(0, 0, 0) 0px -1px 0px;
+  width: 1280px;
+}
+
+div.main {
+  background-color: 
+  rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: 
+  rgb(66, 66, 66);
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans;
+  font-size: 16px;
+  height: 58px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  overflow-y: visible;
+  padding-left: 65px;
+  position: relative;
+  width: 1280px;
+}
+
+div.content {
+  background-color: 
+  rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: 
+  rgb(66, 66, 66);
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans;
+  font-size: 16px;
+  height: 58px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  overflow-y: visible;
+  position: relative;
+  width: 1215px;
+  z-index: 1;
+}
+div.content div.page {
+  background-color: transparent;
+  box-sizing: border-box;
+  color: #424242;
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans;
+  font-size: 16px;
+  height: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  overflow-y: visible;
+  position: relative;
+  width: 1215px;
+}
+div.content div.page header {
+  background-color: 
+  rgba(0, 0, 0, 0);
+  background-image: -webkit-linear-gradient(top, 
+  rgb(250, 250, 250), 
+  rgb(232, 232, 232));
+  border-bottom-color: 
+  rgb(204, 204, 204);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-top-left-radius: 5px;
+  box-sizing: border-box;
+  color: 
+  rgb(66, 66, 66);
+  display: block;
+  font-family: 'Helvetica Neue', Arial, sans;
+  font-size: 26px;
+  height: 58px;
+  line-height: 37px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  overflow-y: visible;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 11px;
+  text-shadow: 
+  rgba(255, 255, 255, 0.796875) 0px 1px 0px;
+  width: 1215px;
+}

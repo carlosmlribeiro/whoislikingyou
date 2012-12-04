@@ -1,2 +1,31 @@
-{"layout":
-	{"copy":"Copyright WhoIsLikingYou"}}
+{
+	"language":"en",
+	"appName":"Who Is Liking You?",
+	"public":
+	{
+		"title":"Who is Liking You? - Manage your customers and social buzz",
+		"section1":
+		{
+			"screenshots":"screenshots",
+			"register":"Register for FREE",
+			"contactus":"Contact Us",
+			"splash1":"Do you have a facebook page to power your small business?",
+			"splash2":"This is step number 2!",
+			"registerBtn":"(pre) Register Now"
+		},
+		"section3":
+		{
+			"splash1":"Early Bird Special",
+			"splash2":"Register now and Who is Liking You will be free forever!",
+			"header1":"Login with Facebook",
+			"header2":"All you need is the Facebook account that adminstrates your business Page - COMING SOON",
+			"facebookBtn":"login with facebook"			
+		},
+		"section5":
+		{
+			"splash1":"Sign up for our mailing list",
+			"splash2":"and get all the latest updates",
+			"email":"type your email"
+		}
+	}
+}

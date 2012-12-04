@@ -1,4 +1,31 @@
-<html>
-#{print body}
-<p> &copy; #{lingua.layout.copy} </p>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <title>#{title}</title>
+		<meta charset="utf-8">
+		#{partial "layout/css.toffee"}	
+		<meta name="description" content="">
+		<!-- google-verification -->
+		<meta name="viewport" content="width=1000">
+		<link rel="apple-touch-icon" href="images/favicon-ios.png">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link type="text/plain" rel="author" href="Carlos Ribeiro - Coimbra, Portugal">
+	</head>	
+	<body>
+		<header role="banner">
+			<nav class="account-nav">
+				<a class="button-header" href="/logout">
+					<span class="icon" aria-hidden="true" data-icon="" title="Sign out"></span>
+					<span class="screen-reader-text">Sign out</span></a>
+			</nav>
+			<h1 class="spinner-container">
+				<a href="/">#{lingua.appName}</a>
+			</h1>
+		</header>
+		</div>
+		<div id="main">
+			#{print body}
+		</div>
+	<body>
 </html>
