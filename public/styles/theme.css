@@ -85,6 +85,18 @@ h3 {
     -moz-transition: all 0.2s;
     -o-transition: all 0.2s;
     transition: all 0.2s; }
+  .navbar .brand.brand-whoislikingyou-mobile span {
+    display: block;
+    position: absolute;
+    top: 5px;
+    background: url(../images/icon-mobile.png) no-repeat center;
+    width: 57px;
+    height: 57px;
+    z-index: -1;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s; }
   .navbar .brand.brand-whoislikingyou:hover span {
     opacity: 0.9; }
 .navbar .nav .active .brand.brand-whoislikingyou, .navbar .nav .active .brand.brand-whoislikingyou:hover, .navbar .nav .brand.brand-whoislikingyou:hover {
