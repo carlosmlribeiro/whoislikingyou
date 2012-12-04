@@ -18,7 +18,7 @@
     "winston":"0.6.2",
     "connect-mongodb":"1.1.5",
     "everyauth": "git://github.com/bnoguchi/everyauth.git#express3",
-    "restify":"1.4.4",
+    "restify":"2.0.0",
     "winston-mongodb":"0.4.0"
   },
   "devDependencies": {
