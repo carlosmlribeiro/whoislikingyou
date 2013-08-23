@@ -18,7 +18,7 @@
 			"splash1":"Promoção Pioneiros",
 			"splash2":"Registe-se já e Who is Liking You vai ser grátis para sempre!",
 			"header1":"Registo com Facebook",
-			"header2":"Tudo o que precisa é a conta Facebook que adminstra a página do seu negócio - BREVEMENTE",
+			"header2":"Tudo o que precisa é a conta Facebook que adminstra a página do seu negócio",
 			"facebookBtn":"Identificar com facebook"			
 		},
 		"section5":
@@ -27,5 +27,12 @@
 			"splash2":"e fique a par das novidades",
 			"email":"insira o email"
 		}
+	},
+	"maillist":
+	{
+		"exists":"Este email já está registado!",
+		"error":"Ocorreu um erro. Por favor tente mais tarde.",
+		"success":"Obrigado! O email está registado na nossa lista.",
+		"wrongEmail":"Introduza um endereço de e-mail."
 	}
 }

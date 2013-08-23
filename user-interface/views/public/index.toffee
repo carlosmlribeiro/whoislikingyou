@@ -38,7 +38,7 @@
               <a href='#section-3'>#{lingua.public.section1.register}</a>
             </li>
             <li>
-              <a href='#' style="color:#ffe9c7">#{lingua.public.section1.screenshots}</a>
+              <a href='#' style="color:#d3dcf2">#{lingua.public.section1.screenshots}</a>
             </li>
             <li>
               <a class='brand brand-whoislikingyou' href='#section-1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -66,9 +66,6 @@
   <div class='container'>
     <div class='row-fluid'>
       <div class='hero-unit pull-center'>
-        <h1>
-          <img src="images/logo_new.png" title="#{lingua.appName}">
-        </h1>
         <p>
           #{lingua.public.section1.splash1}<br />#{lingua.public.section1.splash2}
         </p>
@@ -77,55 +74,11 @@
     <div class='carousel slide' id='intro'>
       <div class='carousel-inner'>
         <div class='active item'>
-          <img alt='slide one' src='images/slides/slide-1.jpg' />
+          <img alt='slide one' src='images/slides/slide-1.png' />
         </div>
       </div>
       <div class='carousel-frame'></div>
-      <a class='carousel-control left' data-slide='prev' href='#intro'>
-        <i class='icon-chevron-left'></i>
-      </a>
-      <a class='carousel-control right' data-slide='next' href='#intro'>
-        <i class='icon-chevron-right'></i>
-      </a>
     </div>
-    <div class='get-it'>
-      <a class='btn btn-large btn-primary' href='#section-3' type='button'>#{lingua.public.section1.registerBtn}</a>
-    </div>
-    {##
-    <!-- .row-fluid -->
-    <!-- .portrait-slides -->
-    <!-- #intro.carousel.slide -->
-    <!-- .carousel-inner -->
-    <!-- .active.item -->
-    <!-- %img{:src => 'images/slides/slide-1-portrait.jpg', :alt => 'slide one'} -->
-    <!-- .item -->
-    <!-- %img{:src => 'images/slides/slide-2-portrait.jpg', :alt => 'slide two'} -->
-    <!-- .item -->
-    <!-- %img{:src => 'images/slides/slide-3-portrait.jpg', :alt => 'slide three'} -->
-    <!-- .carousel-frame -->
-    <!-- %a{:class => "carousel-control left",  :href => "#intro", :data => {:"slide" => "prev"}} -->
-    <!-- %i.icon-chevron-left -->
-    <!-- %a{:class => "carousel-control right",  :href => "#intro", :data => {:"slide" => "next"}} -->
-    <!-- %i.icon-chevron-right -->
-    <!-- .portrait-features -->
-    <!-- %h3 -->
-    <!-- Awesome features -->
-    <!-- %ul -->
-    <!-- %li -->
-    <!-- %i.icon-ok -->
-    <!-- cloud storage -->
-    <!-- %li -->
-    <!-- %i.icon-ok -->
-    <!-- push notifications -->
-    <!-- %li -->
-    <!-- %i.icon-ok -->
-    <!-- geo location -->
-    <!-- %li -->
-    <!-- %i.icon-ok -->
-    <!-- time tracking -->
-    <!-- .get-it -->
-    <!-- %a{:href => "#", :class => "btn btn-large btn-primary", :type => "button"} Get it now -->
-    ##}
   </div>
   <div class='bg-1' data-stellar-background-ratio='0.5'></div>
   <div class='bg-2' data-stellar-background-ratio='1'></div>
@@ -189,7 +142,7 @@
               #{lingua.public.section3.header2}
             </p>
             <div>
-                <img src="images/fb_login_29112012.png" alt="#{lingua.public.section3.facebookBtn}">
+                <a href="auth/facebook" class="facebook-connect" title="#{lingua.public.section3.facebookBtn}"></a>
             </div>
           </li>
         </ul>
@@ -207,10 +160,10 @@
           <small>#{lingua.public.section5.splash2}</small>
         </h1>
       </header>
-      <form class='form-search pull-center' id="formEmail" action="">
+      <form class='form-search pull-center' id="formEmail" action="submit" errorMessage="#{lingua.maillist.wrongEmail}">
         <div class='input-append input-signup'>
           <input class='span3' id='email' placeholder='#{lingua.public.section5.email}' size='12' type='email' />
-          <button class='btn' id='submitEmail' type='button'></button>
+          <button class='btn' id='submitEmail' type='submit'></button>
         </div>
       </form>
       <div id='messages'></div>

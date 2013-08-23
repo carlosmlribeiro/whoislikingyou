@@ -3,10 +3,7 @@
 module.exports = function(req, res, callback) {
   var user;
   user = require("../../data-layer/collections/user");
-  return user.insertByEmail(req.body.email, function(err) {
-    if (err != null) {
-      return callback(err);
-    }
-    return callback(null);
+  return user.insertByEmail(req.body.email, res.locals.lingua.maillist, function(err, message) {
+    return callback(err, message);
   });
 };

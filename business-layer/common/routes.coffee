@@ -1,7 +1,33 @@
-module.exports = (app, myAuthentication) ->
+module.exports = (app, myAuthentication, events) ->
+
+	#homepage (private)
+	app.get '/', (req, res) ->
+		res.redirect('/home')
+		
+	#all app pages (private)
+	app.all '/app/:page/:action?', myAuthentication.ensureAuthenticated, (req, res, next) ->
+		business_object_path = "../"+req.params.page.toString().toLowerCase()
+		try
+			business_object = require(business_object_path)
+		catch er
+			return next()
+
+		console.log req.xhr
+		
+		if req.xhr
+			business_object req, res, events, (err, message) ->
+				return next(err) if err?
+				return res.send(200, {message:message})
+		else
+			business_object req, res, events, (err, view, objectView) ->
+				return next(err) if err?
+				objectView = {} if not objectView?
+				objectView.user = req.user
+				objectView.url = req.url
+				return res.render(view,objectView)
 
 	#homepage (public)
-	app.get '/', (req, res) ->
+	app.get '/home', (req, res) ->
 		res.render('public/index', {layout:null})
 
 	#each customer public page (public)
@@ -9,44 +35,30 @@ module.exports = (app, myAuthentication) ->
 		#t0d0
 		next()
 
-	app.post '/maillist', (req, res) ->
+	#register email address (public)
+	app.post '/maillist', (req, res, next) ->
 		maillist = require("../maillist")
-		maillist req, res, (err) ->
-			return res.send(500, {error:err}) if err
-			res.send(200)
-
-
-	#process login (private)
-	app.get '/app/login', myAuthentication.isAuth, (req, res, next) ->
-		#refresh or create user in db 
-		login = require("../login")
-
-		login req, res, (err) ->
+		maillist req, res, (err, message) ->
 			return next(err) if err?
-			res.redirect("/app/dashboard")
-		
+			res.send(200, {message:message})
 
-	#all app pages (private)
-	app.all '/app/:page', myAuthentication.isAuth, (req, res, next) ->
-		business_object_path = "../"+req.params.page.toString().toLowerCase()
-		try
-			business_object = require(business_object_path)
-		catch er
-			return next()
+	#facebook authentication
+	app.get '/auth/facebook', myAuthentication.passport.authenticate 'facebook', { scope: ['email', 'manage_pages', 'read_insights'], failureRedirect: '/home' }
 
-		business_object req, res, (err, view, objectView) ->
-			return next(err) if err?
-			objectView = {} if not objectView?
-			objectView.user = req.session.auth.facebook.user
-			objectView.url = req.url
-			res.render(view,objectView)
+	app.get '/auth/facebook/callback', 
+		myAuthentication.passport.authenticate 'facebook', 
+			{ successRedirect: '/app/dashboard',
+			failureRedirect: '/home'}
 
-	app.get '*', myAuthentication.auth, (req, res, next) ->
-		#render template 404
-		res.status 404
-		res.render("public/404", {layout:"user-interface/views/public-layout.toffee", title:"Not found"})
+	app.get '/logout', (req, res) ->
+  		req.logout()
+  		res.redirect('/home')
 
 	#404 page
+	app.get '*', myAuthentication.ensureAuthenticated, (req, res, next) ->
+		res.status 404 
+		res.render "/404"
+
 	app.get '*', (req, res) ->
-		res.redirect("/")
+		res.redirect("/home")
 		

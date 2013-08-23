@@ -3,42 +3,244 @@
 	{
 		"selected_items":
 		[
+			[
+				"get",
+				"get_token"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"fa",
+				"facebookId"
+			],
+			[
+				"my",
+				"myAuthentication"
+			],
+			[
+				"email",
+				"email"
+			],
+			[
+				"fi",
+				"first_login"
+			],
+			[
+				"us",
+				"userMongo"
+			],
+			[
+				"up",
+				"updated_time"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"res",
+				"responseText"
+			],
+			[
+				"message",
+				"message"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"form",
+				"formData"
+			],
+			[
+				"spl",
+				"splash2"
+			],
+			[
+				"s",
+				"splash2"
+			],
+			[
+				"spa",
+				"splash1"
+			],
+			[
+				"hea",
+				"header	Tag"
+			],
+			[
+				"mon",
+				"mongodbURL"
+			],
+			[
+				"m",
+				"mongodb_database"
+			],
+			[
+				"mo",
+				"mongodb_host"
+			],
+			[
+				"mp",
+				"mongodb_port"
+			],
+			[
+				"mongo",
+				"mongodbURL"
+			],
+			[
+				"usern",
+				"usernameExists"
+			],
+			[
+				"view",
+				"view"
+			],
+			[
+				"busin",
+				"business_object_path"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"pad",
+				"padding-right"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"cop",
+				"Copyright"
+			],
+			[
+				"g",
+				"get_token"
+			],
+			[
+				"access",
+				"accessToken"
+			],
+			[
+				"f",
+				"font-size"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"padding-",
+				"padding-top"
+			],
+			[
+				"back",
+				"background-color"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "/Users/carlosmlribeiro/whoislikingyou/package.json",
+			"file": "user-interface/views/app/dashboard.toffee",
 			"settings":
 			{
-				"buffer_size": 394,
+				"buffer_size": 1532,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "# Server setup (creating, configuring and starting the server, using a specific port to listen)\n\n\n# Step 1 - Require external modules\nexpress = require('express')\nhttp = require('http')\nwinston = require('winston')\nsocket_io = require('socket.io')\nlingua = require('lingua')\nMemoryStore = express.session.MemoryStore\n\nmyMiddleware = require(\"./services/supportservices/middleware\")\nmyErrorHandler= require(\"./services/supportservices/errorHandler\")\n\nmyRoutes = \"./presentation/routes\"\nmySocketRoutes = \"./presentation/socketroutes\"\n\nwinston.add(winston.transports.File, { filename: 'generic.log' });\nwinston.remove(winston.transports.Console)\nexports.winston = winston\n\n# Step 2 - Server Configuration\napp = module.exports = express()\n	\napp.set 'views', \"./presentation/views\" #Definition to the path of the view folder\napp.set 'view engine', 'toffee'\napp.set 'db', \"mongodb://192.168.1.21:27016/NewDawn\"\napp.set 'port', process.env.npm_package_config_port\n#todo-create collection in MongoDB\napp.set 'onlineUsers', {}\napp.locals.layout = './presentation/views/layout.toffee'\n\nif app.get(\"env\") is \"development\"\n	app.use express.logger('dev')\n\napp.use express.favicon('./presentation/public/favicon.ico')\napp.use myMiddleware.type('multipart/form-data', express.limit('2mb')) # only accepted before bodyParser\n\napp.use lingua app, {defaultLocale: 'en', path: './presentation/views/locales'}\n\napp.use express.bodyParser({keepExtensions: true, uploadDir: \"./presentation/public/uploads\"})\n\n#session support\nsession_store = new MemoryStore()\napp.use express.cookieParser('optional secret string') \napp.use express.session({key: 'sid', cookie: {maxAge: 3600000}, store: session_store}) #use before app.router\n\napp.use express.compress({level:9, memLevel:9}) # only accepted before static and router\napp.use express.static('./presentation/public')\napp.use myMiddleware.status\napp.use myMiddleware.config\n\napp.use app.router\n\nif app.get(\"env\") is \"development\"\n	app.use express.errorHandler({dumpExceptions:false, showStack:false})\n	app.disable('view cache')\nelse\n	#production error handling\n	app.use myErrorHandler.logErrors\n	app.use myErrorHandler.clientErrorHandler\n	app.use myErrorHandler.errorHandler\n\nwinston.log('info', 'Requiring Routes')\nrequire(myRoutes)(app, myMiddleware, session_store) \n\nwinston.log('info', 'Creating http server')\n# Step x - Create and listen server\nserver = http.createServer(app)\n\nwinston.log('info', 'Creating socket server')\nio = socket_io.listen(server)\n\nwinston.log('info', 'Configuring socket server')\nio.set(\"log level\", 0)\nrequire(mySocketRoutes)(app, myMiddleware, io, session_store) \n\nwinston.log('info', 'Ready')\nserver.listen app.get('port'), ->\n	console.log \"Express server listening on port \" + server.address().port + \", in \" +  app.get(\"env\")\n",
-			"file": "/Users/carlosmlribeiro/Documents/source/server.coffee",
-			"file_size": 2864,
-			"file_write_time": 1352894399000000,
+			"file": "user-interface/views/layout.toffee",
 			"settings":
 			{
-				"buffer_size": 2784,
+				"buffer_size": 7305,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "user-interface/views/app/popup.toffee",
+			"settings":
+			{
+				"buffer_size": 1177,
+				"line_ending": "Unix",
+				"name": "<div id=\"simpleModal\" class=\"modal show\">"
+			}
+		},
+		{
+			"file": "public/styles/style.css",
+			"settings":
+			{
+				"buffer_size": 78998,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "business-layer/dashboard/index.coffee",
+			"settings":
+			{
+				"buffer_size": 1249,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/styles/theme.css",
+			"settings":
+			{
+				"buffer_size": 25481,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data-layer/external-services/facebook.coffee",
+			"settings":
+			{
+				"buffer_size": 362,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 47.0,
+		"height": 167.0,
 		"selected_items":
 		[
+			[
+				"git: co",
+				"Git: Commit"
+			],
+			[
+				"",
+				"Git: Add Current File"
+			],
 			[
 				"insta",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -55,26 +257,109 @@
 	},
 	"file_history":
 	[
+		"/Users/carlosmlribeiro/whoislikingyou/data-layer/external-services/facebook.js",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/app/settings.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/common/authentication.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/data-layer/collections/user.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/login/index.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/data-layer/external-services/facebook.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/package.json",
+		"/Users/carlosmlribeiro/whoislikingyou/public/styles/style.css",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/common/routes.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/dashboard/index.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/server.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/settings/index.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/locales/pt-PT.json",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/locales/en.json",
+		"/Users/carlosmlribeiro/whoislikingyou/public/javascripts/script.js",
+		"/Users/carlosmlribeiro/whoislikingyou/public/styles/theme.css",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/app/dashboard.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/layout.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/error/layout.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public/index.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/maillist/index.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public/scripts.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public/css.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public-layout.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/public/styles/layout.css",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public-layout/scripts.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public-layout/css.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public-layout/scripts.js",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/public/404.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/layout/css.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/public/styles/public-layout.css",
+		"/Users/carlosmlribeiro/whoislikingyou/whoislikingyou.sublime-project",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/index-layout.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/data-layer/user.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/locales/pt-pt.json",
+		"/Users/carlosmlribeiro/whoislikingyou/node_modules/everyauth/documentup.json",
+		"/Users/carlosmlribeiro/Documents/whoislikingyou/templates/Project management software, online collaboration  Basecamp_files/sprockets-8be31c97c5d41184b902e220f269839da02461f3.css",
+		"/Users/carlosmlribeiro/Documents/whoislikingyou/templates/Project management software, online collaboration  Basecamp.html",
+		"/Users/carlosmlribeiro/whoislikingyou/user-interface/views/index-layout/css.toffee",
+		"/Users/carlosmlribeiro/whoislikingyou/README.md",
+		"/Users/carlosmlribeiro/whoislikingyou/Procfile",
+		"/Users/carlosmlribeiro/whoislikingyou/business-layer/common/middleware.coffee",
+		"/Users/carlosmlribeiro/whoislikingyou/Cakefile",
+		"/Users/carlosmlribeiro/Documents/source/server.coffee",
 		"/Users/carlosmlribeiro/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/carlosmlribeiro/Documents/source/package.json",
 		"/Users/carlosmlribeiro/Documents/source/classes/MailIMAP.coffee"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 0.0,
 		"where_history":
 		[
+			"<project>",
+			"/Users/carlosmlribeiro/whoislikingyou/public/javascripts"
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"common/login",
+			"border-radius",
+			"z-index",
+			"done",
+			"ff5b5b",
+			"slide-1",
+			"carousel-frame",
+			"carousel",
+			"i_22_settings",
+			"#",
+			".top_panel",
+			".css",
+			"brand-",
+			"brand",
+			"brand-whoislikingyou",
+			"submitEmail",
+			".section-5.",
+			".section-3.",
+			".section-1.",
+			".index.",
+			"myRoutes",
+			"7de8d9",
+			"ffe9c7",
+			"7de8d9",
+			"2d2d2f",
+			"7de8d9",
+			"bf5841",
+			"bf996b",
+			"dad7c7",
+			"F7C390",
+			"DB9858",
+			"d4cdc1",
+			"fold2",
+			"free",
+			"container",
+			"body.statement",
+			"container"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -82,41 +367,57 @@
 		"regex": false,
 		"replace_history":
 		[
+			"callback",
+			"48577d",
+			".section5.",
+			".section3.",
+			".section1.",
+			".section-1.",
+			"545a55",
+			"7de8d9",
+			"ffe9c7",
+			"7de8d9",
+			"2d2d2f",
+			"545a55",
+			"7de8d9",
+			"ffe9c7",
+			"a61c1c",
+			"bf5841",
+			"bf996b",
+			"main-content"
 		],
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/carlosmlribeiro/whoislikingyou/package.json",
+					"file": "user-interface/views/app/dashboard.toffee",
 					"settings":
 					{
-						"buffer_size": 394,
+						"buffer_size": 1532,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								335,
-								335
+								391,
+								391
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -126,18 +427,155 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/Users/carlosmlribeiro/Documents/source/server.coffee",
+					"file": "user-interface/views/layout.toffee",
 					"settings":
 					{
-						"buffer_size": 2784,
+						"buffer_size": 7305,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								484,
-								484
+								2403,
+								2403
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 708.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "user-interface/views/app/popup.toffee",
+					"settings":
+					{
+						"buffer_size": 1177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1019,
+								1019
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<div id=\"simpleModal\" class=\"modal show\">",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/styles/style.css",
+					"settings":
+					{
+						"buffer_size": 78998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								78496,
+								78496
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 34646.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "business-layer/dashboard/index.coffee",
+					"settings":
+					{
+						"buffer_size": 1249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								559,
+								559
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/styles/theme.css",
+					"settings":
+					{
+						"buffer_size": 25481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21764,
+								21736
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10243.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "data-layer/external-services/facebook.coffee",
+					"settings":
+					{
+						"buffer_size": 362,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								256,
+								256
 							]
 						],
 						"settings":
@@ -145,7 +583,7 @@
 							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 471.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -159,7 +597,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -184,9 +622,17 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 205.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -209,6 +655,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 217.0,
 	"status_bar_visible": true
 }

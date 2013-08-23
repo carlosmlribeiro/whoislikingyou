@@ -92,27 +92,27 @@ function tooltipInit() {
 // Validate contact form
 function contactInit() {
     var formData = {};
-    $('#submitEmail').click( function() {
+    $('#formEmail').submit(function() {
         var $email = $('#email');
         formData.email = $email.val();
-        console.log(formData);
         if( validateEmail( $email.val() ) ) {
             $.ajax({  
             url: "/maillist",  
             type: "post",  
             data: formData,
             success:function(data){
-                message( "<strong>Thanks for your interest!</strong> we will be in touch soon....", "success", 5000 );
+                message(data.message, "success", 5000 );
             }, 
             error:function(data){ 
-                message( "<strong>Error on Server</strong> please try again later", "error", 5000 );
+                message(data.responseText, "error", 5000 );
             } 
         })  
             
         }
         else {
-            message( "<strong>Invalid Email</strong> please type in a correct email address", "error", 5000 );
+            message(this.getAttribute("errorMessage"), "error", 5000 );
         }
+        return false;
     });
 
     $('#email').keypress( function() {

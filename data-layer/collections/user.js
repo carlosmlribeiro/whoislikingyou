@@ -18,25 +18,126 @@ mongodbURL = "mongodb://" + mongodb_username + ":" + mongodb_password + "@" + mo
 db = mongoose.createConnection(mongodbURL);
 
 schema = mongoose.Schema({
-  username: 'string',
-  email: 'string'
+  facebookId: Number,
+  username: String,
+  name: String,
+  email: String,
+  pages: [
+    {
+      _id: String,
+      name: String
+    }
+  ],
+  activePage: {
+    _id: String,
+    name: String
+  },
+  pageTest: Array,
+  accessKey: String,
+  locale: String,
+  gender: String,
+  timezone: String,
+  updated_time: {
+    type: Date,
+    "default": Date.now
+  },
+  location: {
+    _id: String,
+    name: String
+  }
 });
 
-exports.upsert = function(user, data, callback) {
-  return callback(null);
-};
+this.User = db.model('User', schema);
 
-exports.insertByEmail = function(email, callback) {
-  var User, userdb;
-  User = db.model('User', schema);
-  userdb = new User({
-    username: '',
-    email: email
-  });
-  return userdb.save(function(err) {
+exports.upsert = function(accessToken, profile, callback) {
+  var first_login,
+    _this = this;
+  first_login = false;
+  return this.User.findOne({
+    'email': profile.emails[0].value
+  }, function(err, user) {
     if (err != null) {
       return callback(err);
     }
-    return callback(null);
+    if (!user) {
+      user = new _this.User({
+        email: profile.emails[0].value
+      });
+      first_login = true;
+    }
+    user.username = profile.username;
+    user.name = profile.displayName;
+    user.accessKey = accessToken;
+    return user.save(function(err, user) {
+      if (err != null) {
+        console.log(err);
+      }
+      return callback(err, user, first_login);
+    });
+  });
+};
+
+exports.insertByEmail = function(email, messages, callback) {
+  var userdb;
+  userdb = new this.User({
+    email: email
+  });
+  return userdb.save(function(err) {
+    var message;
+    if (err != null) {
+      if (err.code === 11000) {
+        message = messages.exists;
+      } else {
+        message = messages.error;
+      }
+    } else {
+      message = messages.success;
+    }
+    return callback(err, message);
+  });
+};
+
+exports.addPage = function(userEmail, page, callback) {
+  return this.User.findOne({
+    email: userEmail
+  }, function(err, userdb) {
+    if (err != null) {
+      return callback(err);
+    }
+    if (!userdb) {
+      return callback("no user found");
+    }
+    userdb.pageTest.push(page.id);
+    userdb.pages.push({
+      _id: page.id,
+      name: page.name
+    });
+    userdb.activePage = {
+      _id: page.id,
+      name: page.name
+    };
+    return userdb.save(function(err) {
+      return callback(err);
+    });
+  });
+};
+
+exports.activatePage = function(userEmail, page, callback) {
+  return this.User.findOne({
+    email: userEmail
+  }, function(err, userdb) {
+    if (err != null) {
+      return callback(err);
+    }
+    if (!userdb) {
+      return callback("no user found");
+    }
+    userdb.activePage = {
+      _id: page.id,
+      name: page.name
+    };
+    return userdb.save(function(err) {
+      return callback(err);
+    });
   });
 };

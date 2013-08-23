@@ -1,31 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	    <title>#{title}</title>
-		<meta charset="utf-8">
-		#{partial "layout/css.toffee"}	
-		<meta name="description" content="">
-		<!-- google-verification -->
-		<meta name="viewport" content="width=1000">
-		<link rel="apple-touch-icon" href="images/favicon-ios.png">
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-		<link type="text/plain" rel="author" href="Carlos Ribeiro - Coimbra, Portugal">
-	</head>	
-	<body>
-		<header role="banner">
-			<nav class="account-nav">
-				<a class="button-header" href="/logout">
-					<span class="icon" aria-hidden="true" data-icon="" title="Sign out"></span>
-					<span class="screen-reader-text">Sign out</span></a>
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Who is Liking You?</title>
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="../javascripts/Flot/excanvas.js"></script>
+	<![endif]-->
+	<!-- The Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet">
+	<!-- The Main CSS File -->
+	<link rel="stylesheet" href="../styles/style.css">
+</head>
+<!-- WINDOW ONLOAD OPEN POPUP IF OBJECTVIEW.POPUP = TRUE -->
+{#
+	if showPopup?
+		{:<body onload="openModal(#{showpopup.functiondata});">:}
+	else
+		{:<body>:}
+#}
+	<div id="background"></div>
+	<div id="simpleModal" class="g_6" width="400">
+	</div>
+	<!-- Change Pattern -->
+	<div class="changePattern">
+		<span id="facebook" url="https://www.facebook.com/whoislikingyou"></span>
+		<span id="twitter" url="http://www.twitter.com/whoislikingyou"></span>
+		<span id="blogger" url="http://blog.whoislikingyou.com"></span>
+	</div>
+	
+	<!-- Top Panel -->
+	<div class="top_panel">
+		<div class="wrapper">
+			<div class="user">
+				<img src="https://graph.facebook.com/#{user.username}/picture" alt="user_avatar" class="user_avatar" width="24" height="24">
+				<span class="label">#{user.name}</span>
+				<ul class="drop_menu menu_with_icons">
+					<li onclick="window.location='/logout'">
+						<a class="i_16_logout" href="#" title="Logout">
+							<span class="label">Logout</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="top_links" id="pageList">
+				#{partial "client/pageList.toffee", user}
+			</div>
+		</div>
+	</div>
+
+	<header class="main_header">
+		<div class="wrapper">
+			<div class="logo">
+				<a href="#" Title="#{lingua.appName}">
+					<img src="../images/logo_new.png" alt="#{lingua.appName}">
+				</a>
+			</div>
+			<nav class="top_buttons">
+				<ul>
+					<li class="big_button">
+						<div class="big_count">
+							<span>?</span>
+						</div>
+						<div class="out_border">
+							<div class="button_wrapper">
+								<div class="in_border">
+									<a href="#" title="Market" class="the_button">
+										<span class="i_32_dollar"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</nav>
-			<h1 class="spinner-container">
-				<a href="/">#{lingua.appName}</a>
-			</h1>
-		</header>
 		</div>
-		<div id="main">
-			#{print body}
+	</header>
+
+	<div class="wrapper small_menu">
+		<ul class="menu_small_buttons">
+			<li><a title="General Info" class="i_22_dashboard {# if url.substring(0,14).toLowerCase() == '/app/dashboard' {:smActive:} #}" href="#"></a></li>
+			<li><a title="Your Customers" class="i_22_ui {# if url.substring(0,14).toLowerCase() == '/app/customers' {:smActive:} #}" href="/app/customers"></a></li>
+			<li><a title="Your Campaings" class="i_22_charts {# if url.substring(0,14).toLowerCase() == '/app/campaigns' {:smActive:} #}" href="/app/campaigns"></a></li>
+			<li><a title="Your Campaings" class="i_22_forms {# if url.substring(0,16).toLowerCase() == '/app/preferences' {:smActive:} #}" href="/app/campaigns"></a></li>
+		</ul>
+	</div>
+	<div class="wrapper contents_wrapper">
+		<aside class="sidebar">
+			<ul class="tab_nav">
+				<li class="{# if url.substring(0,14).toLowerCase() == '/app/dashboard' {:active_tab:} #}  i_32_dashboard">
+					<a href="/app/dashboard" title="General Info">
+						<span class="tab_label">Dashboard</span>
+						<span class="tab_info">General Info</span>
+					</a>
+				</li>
+				<li class="{# if url.substring(0,14).toLowerCase() == '/app/customers' {:active_tab:} #} i_32_ui">
+					<a href="/app/customers" title="Customers">
+						<span class="tab_label">Customers</span>
+						<span class="tab_info">Who is LIKing you?</span>
+					</a>
+				</li>
+				<li class="{# if url.substring(0,14).toLowerCase() == '/app/campaigns' {:active_tab:} #} i_32_charts">
+					<a href="/app/campaigns" title="Customers">
+						<span class="tab_label">Campaigns</span>
+						<span class="tab_info">Talk with your customers</span>
+					</a>
+				</li>
+				<li class="{# if url.substring(0,16).toLowerCase() == '/app/preferences' {:active_tab:} #} i_32_forms">
+					<a href="/app/preferences" title="Customers">
+						<span class="tab_label">Preferences</span>
+						<span class="tab_info">Manage your settings</span>
+					</a>
+				</li>
+			</ul>
+		</aside>
+		
+		<div class="contents">
+			<div class="grid_wrapper">
+				#{print body}	
+			</div>
 		</div>
-	<body>
+	</div>
+
+	<footer>
+		<div class="wrapper">
+			<span class="copyright">
+				COPYRIGHT © 2012 Who Is LIKing You?
+			</span>
+		</div>
+	</footer>
+</body>
+<!-- Client Templates -->
+<script src="../javascripts/templates.js"></script>
+<!-- The Main Controller -->
+<script src="../javascripts/controller.js"></script>
+<!-- jQuery -->
+<script src="../javascripts/jquery.1.7.2.min.js"></script>
+<!-- Flot 
+<script src="../javascripts/Flot/jquery.flot.js"></script>
+<script src="../javascripts/Flot/jquery.flot.resize.js"></script>
+<script src="../javascripts/Flot/jquery.flot.pie.js"></script>-->
+<!-- DataTables -->
+<script src="../javascripts/jquery.dataTables.min.js"></script>
+<!-- ColResizable -->
+<script src="../javascripts/colResizable-1.3.js"></script>
+<!-- jQuryUI -->
+<script src="../javascripts/jquery-ui-1.8.21.min.js"></script>
+<!-- Uniform -->
+<script src="../javascripts/jquery.uniform.js"></script>
+<!-- Tipsy -->
+<script src="../javascripts/jquery.tipsy.js"></script>
+<!-- Elastic -->
+<script src="../javascripts/jquery.elastic.js"></script>
+<!-- ColorPicker -->
+<script src="../javascripts/colorpicker.js"></script>
+<!-- SuperTextarea -->
+<script src="../javascripts/jquery.supertextarea.min.js"></script>
+<!-- UISpinner -->
+<script src="../javascripts/ui.spinner.js"></script>
+<!-- MaskedInput -->
+<script src="../javascripts/jquery.maskedinput-1.3.js"></script>
+<!-- ClEditor -->
+<script src="../javascripts/jquery.cleditor.js"></script>
+<!-- Full Calendar -->
+<script src="../javascripts/fullcalendar.js"></script>
+<!-- Color Box -->
+<script src="../javascripts/jquery.colorbox.js"></script>
+<!-- Kanrisha Script -->
+<script src="../javascripts/kanrisha.js"></script>
+<!-- Sockets -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="../javascripts/socket.js"></script>
 </html>

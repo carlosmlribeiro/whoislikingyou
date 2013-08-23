@@ -1,0 +1,34 @@
+<div class="widget_header">
+	<h4 class="widget_header_title wwIcon i_16_settings">Add pages to "Who Is LIKing You?"</h4>
+</div>
+<div class="widget_contents noPadding">
+{# 
+	if not message?
+		{: <div class="line_grid"><div class="iPreview"><img src="../Images/Icons/Load/load-8.gif" alt="load"></div></div>:}
+	else
+		if message?
+			for page in message
+				{:
+				<div class="line_grid">
+					<div class="g_10">
+						<span class="label">#{page.name}</span>
+						<div class="field_notice">#{page.category}</div>
+					</div>				
+					<div class="g_2" id="#{page.id}">
+						{# if page.exists?
+							{: <div class="simple_buttons"><div class="bwIcon i_16_checkbox ui-state-active" style="cursor:default;">Added</div></div> :}
+						else
+							{: <div class="simple_buttons addPage"><div class="bwIcon i_16_add" id="#{page.id}" name="#{page.name}" category="#{page.category}" accessKey="#{page.access_token}" onclick="addPages(this);">Add</div></div> :}
+						#}
+					</div>
+				</div>
+				:}
+	#}
+	<div class="line_grid">
+		<div class="g_12">
+			<div class="simple_buttons">
+				<div id="closeButton" onclick="closeModal(this);">Close</div>
+			</div>
+		</div>
+	</div>
+</div>

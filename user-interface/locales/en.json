@@ -18,7 +18,7 @@
 			"splash1":"Early Bird Special",
 			"splash2":"Register now and Who is Liking You will be free forever!",
 			"header1":"Login with Facebook",
-			"header2":"All you need is the Facebook account that adminstrates your business Page - COMING SOON",
+			"header2":"All you need is the Facebook account that adminstrates your business Page",
 			"facebookBtn":"login with facebook"			
 		},
 		"section5":
@@ -27,5 +27,12 @@
 			"splash2":"and get all the latest updates",
 			"email":"type your email"
 		}
+	},
+	"maillist":
+	{
+		"exists":"Email already exists in our database",
+		"error":"Something is wrong. Please try again later.",
+		"success":"Thank you! You are now registered on our mailing list.",
+		"wrongEmail":"Invalid Email! please type in a correct email address"
 	}
 }

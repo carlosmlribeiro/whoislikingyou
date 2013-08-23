@@ -1,0 +1,38 @@
+<ul>
+	<li>
+		{# if user.activePage._id?
+			{:
+				<img src="https://graph.facebook.com/#{user.activePage._id}/picture" alt="page_avatar" class="user_avatar" width="24" height="24">
+				<a href="#" title="Pages">
+					<span class="label">#{user.activePage.name}</span>
+				</a>
+			:}
+		else
+			{:
+				<img src="https://graph.facebook.com/whoislikingyou/picture" alt="page_avatar" class="user_avatar" width="24" height="24">
+				<a href="#" title="Pages">
+					<span class="label">add pages here</span>
+				</a>
+			:} 
+
+		#}		
+		<!-- Drop Menu -->
+		<ul class="drop_menu menu_without_icons">
+			{# for page in user.pages
+				if page._id != user.activePage._id
+					{:
+						<li>
+							<a title="#{page.name}"  onclick="activatePage('#{page._id}', '#{page.name}');" href="#">
+								<span class="label">#{page.name}</span>
+							</a>									
+						</li>
+					:}
+			#}
+			<li>
+				<a class="i_16_add" onclick="openPagePopup();" title="Add more pages">
+					<span class="label" style="margin-left:24px">Add more</span>
+				</a>
+			</li>
+		</ul>
+	</li>
+</ul>

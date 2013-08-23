@@ -10,21 +10,80 @@ mongodbURL = "mongodb://"+ mongodb_username + ":" + mongodb_password + "@" + mon
 db = mongoose.createConnection(mongodbURL)
 
 schema = mongoose.Schema({
-	username: 'string',
-	email: 'string'});
+	facebookId: Number,
+	username: String,
+	name: String,
+	email: String,
+	pages: [{
+		_id: String,
+		name: String}],
+	activePage: {
+		_id: String,
+		name: String},
+	pageTest:Array,
+	accessKey: String,
+	locale: String,
+	gender: String,
+	timezone: String,
+	updated_time: { type: Date, default: Date.now },
+	location: {
+		_id: String, 
+		name: String}});
 
-exports.upsert = (user, data, callback) ->
+@User = db.model('User', schema)
 
-	#insert or update user in mongodb
-	callback null
+exports.upsert = (accessToken, profile, callback) ->
+	first_login = false
 
-exports.insertByEmail = (email, callback) ->
-
-	User = db.model('User', schema);
+	@User.findOne { 'email': profile.emails[0].value }, (err, user) =>
+		return callback err if err?
+		if not user
+			user = new @User({ email: profile.emails[0].value })
+			first_login = true
+		
+		user.username = profile.username
+		user.name = profile.displayName
+		user.accessKey = accessToken
 	
-	userdb = new User({ username: '', email: email });
+		user.save (err, user) ->
+			console.log err if err?
+			return callback(err, user, first_login)
+
+exports.insertByEmail = (email, messages, callback) ->
+	
+	userdb = new @User({ email: email })
 
 	userdb.save (err) ->
+		if err?
+			if err.code == 11000
+				message = messages.exists 
+			else
+				message = messages.error
+		else
+			message = messages.success
+
+		callback err, message
+
+exports.addPage = (userEmail, page, callback) ->
+	
+	@User.findOne { email: userEmail }, (err, userdb) ->
 		return callback err if err?
 
-		callback null
+		return callback "no user found" if not userdb
+	
+		userdb.pageTest.push(page.id)
+		userdb.pages.push({_id:page.id, name:page.name})
+		userdb.activePage = {_id: page.id, name: page.name}
+
+		userdb.save (err) ->
+			return callback err
+
+exports.activatePage = (userEmail, page, callback) ->
+	@User.findOne { email: userEmail }, (err, userdb) ->
+		return callback err if err?
+		return callback "no user found" if not userdb
+	
+		userdb.activePage = {_id: page.id, name: page.name}
+
+		userdb.save (err) ->
+			return callback err
